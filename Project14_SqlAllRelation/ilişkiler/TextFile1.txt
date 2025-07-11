@@ -1,0 +1,106 @@
+﻿--create database DB_14_SqlRealions
+--use DB_14_SqlRealions
+
+
+--create table tbl_team(
+
+--team_id int primary key identity(1,1),
+--team_name varchar(50),
+--team_country varchar(50)
+
+
+
+--)
+
+--create table tbl_teamdetais
+--(
+--teamdetail_id int primary key identity(1,1),
+--teamid int unique,
+--teamcolour nvarchar(50),
+--team_city varchar(50),
+--team_value decimal(18,2)
+
+--foreign key(teamid) references tbl_team(team_id)
+--)
+
+--create table tbl_player
+--(
+--player_id int primary key identity(1,1),
+--playername varchar(50),
+--teamid int,
+--foreign key (teamid) references tbl_team(team_id)
+
+
+
+--)
+
+
+
+
+
+
+
+create table sponcores
+(
+
+sponsor_id int primary key identity(1,1) ,
+sponsor_ad varchar(50)
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create table teamsponsor
+(
+teamid int,
+sponsorid int,
+primary key(teamid,sponsorid),
+foreign key (teamid) references tbl_team(team_id),
+foreign key(sponsorid) references sponcores(sponsor_id)
+
+
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

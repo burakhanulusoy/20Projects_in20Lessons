@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_3_20ProjectsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="Categoryid" />
+          </Key>
+          <Property Name="Categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLcustomer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" MaxLength="50" />
+          <Property Name="customer_country" Type="varchar" MaxLength="50" />
+          <Property Name="customer_city" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLorder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="count" Type="int" />
+          <Property Name="Unit Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Totalprice" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TBLproduct">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="50" />
+          <Property Name="product_stock" Type="int" />
+          <Property Name="product_price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="product_status" Type="bit" />
+          <Property Name="category_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_TBLorder_TBLcustomer">
+          <End Role="TBLcustomer" Type="Self.TBLcustomer" Multiplicity="0..1" />
+          <End Role="TBLorder" Type="Self.TBLorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLcustomer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="TBLorder">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLorder_TBLproduct">
+          <End Role="TBLproduct" Type="Self.TBLproduct" Multiplicity="0..1" />
+          <End Role="TBLorder" Type="Self.TBLorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLproduct">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="TBLorder">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLproduct_tbl_category">
+          <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+          <End Role="TBLproduct" Type="Self.TBLproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_category">
+              <PropertyRef Name="Categoryid" />
+            </Principal>
+            <Dependent Role="TBLproduct">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_3_20ProjectsModelStoreContainer">
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLcustomer" EntityType="Self.TBLcustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLorder" EntityType="Self.TBLorder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLproduct" EntityType="Self.TBLproduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLorder_TBLcustomer" Association="Self.FK_TBLorder_TBLcustomer">
+            <End Role="TBLcustomer" EntitySet="TBLcustomer" />
+            <End Role="TBLorder" EntitySet="TBLorder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLorder_TBLproduct" Association="Self.FK_TBLorder_TBLproduct">
+            <End Role="TBLproduct" EntitySet="TBLproduct" />
+            <End Role="TBLorder" EntitySet="TBLorder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLproduct_tbl_category" Association="Self.FK_TBLproduct_tbl_category">
+            <End Role="tbl_category" EntitySet="tbl_category" />
+            <End Role="TBLproduct" EntitySet="TBLproduct" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_3_20ProjectsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="Categoryid" />
+          </Key>
+          <Property Name="Categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLproduct" Relationship="Self.FK_TBLproduct_tbl_category" FromRole="tbl_category" ToRole="TBLproduct" />
+        </EntityType>
+        <EntityType Name="TBLcustomer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLorder" Relationship="Self.FK_TBLorder_TBLcustomer" FromRole="TBLcustomer" ToRole="TBLorder" />
+        </EntityType>
+        <EntityType Name="TBLorder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="Unit_Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Totalprice" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="TBLcustomer" Relationship="Self.FK_TBLorder_TBLcustomer" FromRole="TBLorder" ToRole="TBLcustomer" />
+          <NavigationProperty Name="TBLproduct" Relationship="Self.FK_TBLorder_TBLproduct" FromRole="TBLorder" ToRole="TBLproduct" />
+        </EntityType>
+        <EntityType Name="TBLproduct">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_stock" Type="Int32" />
+          <Property Name="product_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="product_status" Type="Boolean" />
+          <Property Name="category_id" Type="Int32" />
+          <NavigationProperty Name="tbl_category" Relationship="Self.FK_TBLproduct_tbl_category" FromRole="TBLproduct" ToRole="tbl_category" />
+          <NavigationProperty Name="TBLorder" Relationship="Self.FK_TBLorder_TBLproduct" FromRole="TBLproduct" ToRole="TBLorder" />
+        </EntityType>
+        <Association Name="FK_TBLproduct_tbl_category">
+          <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+          <End Role="TBLproduct" Type="Self.TBLproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_category">
+              <PropertyRef Name="Categoryid" />
+            </Principal>
+            <Dependent Role="TBLproduct">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLorder_TBLcustomer">
+          <End Role="TBLcustomer" Type="Self.TBLcustomer" Multiplicity="0..1" />
+          <End Role="TBLorder" Type="Self.TBLorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLcustomer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="TBLorder">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLorder_TBLproduct">
+          <End Role="TBLproduct" Type="Self.TBLproduct" Multiplicity="0..1" />
+          <End Role="TBLorder" Type="Self.TBLorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLproduct">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="TBLorder">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_3_20ProjectsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+          <EntitySet Name="TBLcustomer" EntityType="Self.TBLcustomer" />
+          <EntitySet Name="TBLorder" EntityType="Self.TBLorder" />
+          <EntitySet Name="TBLproduct" EntityType="Self.TBLproduct" />
+          <AssociationSet Name="FK_TBLproduct_tbl_category" Association="Self.FK_TBLproduct_tbl_category">
+            <End Role="tbl_category" EntitySet="tbl_category" />
+            <End Role="TBLproduct" EntitySet="TBLproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLorder_TBLcustomer" Association="Self.FK_TBLorder_TBLcustomer">
+            <End Role="TBLcustomer" EntitySet="TBLcustomer" />
+            <End Role="TBLorder" EntitySet="TBLorder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLorder_TBLproduct" Association="Self.FK_TBLorder_TBLproduct">
+            <End Role="TBLproduct" EntitySet="TBLproduct" />
+            <End Role="TBLorder" EntitySet="TBLorder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_3_20ProjectsModelStoreContainer" CdmEntityContainer="DB_3_20ProjectsEntities">
+          <EntitySetMapping Name="tbl_category">
+            <EntityTypeMapping TypeName="DB_3_20ProjectsModel.tbl_category">
+              <MappingFragment StoreEntitySet="tbl_category">
+                <ScalarProperty Name="Categoryid" ColumnName="Categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLcustomer">
+            <EntityTypeMapping TypeName="DB_3_20ProjectsModel.TBLcustomer">
+              <MappingFragment StoreEntitySet="TBLcustomer">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_country" ColumnName="customer_country" />
+                <ScalarProperty Name="customer_city" ColumnName="customer_city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLorder">
+            <EntityTypeMapping TypeName="DB_3_20ProjectsModel.TBLorder">
+              <MappingFragment StoreEntitySet="TBLorder">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="Unit_Price" ColumnName="Unit Price" />
+                <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLproduct">
+            <EntityTypeMapping TypeName="DB_3_20ProjectsModel.TBLproduct">
+              <MappingFragment StoreEntitySet="TBLproduct">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_stock" ColumnName="product_stock" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_status" ColumnName="product_status" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

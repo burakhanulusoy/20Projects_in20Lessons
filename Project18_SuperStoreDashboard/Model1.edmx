@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Db17_SuperStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Db17_SuperStore.dbo.superstore' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="superstore">
+          <Key>
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Country" />
+            <PropertyRef Name="Customer_ID" />
+            <PropertyRef Name="Customer_Name" />
+            <PropertyRef Name="Market" />
+            <PropertyRef Name="记录数" />
+            <PropertyRef Name="Order_Date" />
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Order_Priority" />
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Product_Name" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="Row_ID" />
+            <PropertyRef Name="Sales" />
+            <PropertyRef Name="Segment" />
+            <PropertyRef Name="Ship_Date" />
+            <PropertyRef Name="Ship_Mode" />
+            <PropertyRef Name="Shipping_Cost" />
+            <PropertyRef Name="State" />
+            <PropertyRef Name="Sub_Category" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Market2" />
+            <PropertyRef Name="weeknum" />
+          </Key>
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Discount" Type="tinyint" />
+          <Property Name="Market" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="记录数" Type="tinyint" Nullable="false" />
+          <Property Name="Order_Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Order_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Order_Priority" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Product_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Product_Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Profit" Type="float" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Row_ID" Type="int" Nullable="false" />
+          <Property Name="Sales" Type="smallint" Nullable="false" />
+          <Property Name="Segment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ship_Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Ship_Mode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shipping_Cost" Type="float" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sub_Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="smallint" Nullable="false" />
+          <Property Name="Market2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="weeknum" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Db17_SuperStoreModelStoreContainer">
+          <EntitySet Name="superstore" EntityType="Self.superstore" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [superstore].[Category] AS [Category], 
+    [superstore].[City] AS [City], 
+    [superstore].[Country] AS [Country], 
+    [superstore].[Customer_ID] AS [Customer_ID], 
+    [superstore].[Customer_Name] AS [Customer_Name], 
+    [superstore].[Discount] AS [Discount], 
+    [superstore].[Market] AS [Market], 
+    [superstore].[记录数] AS [记录数], 
+    [superstore].[Order_Date] AS [Order_Date], 
+    [superstore].[Order_ID] AS [Order_ID], 
+    [superstore].[Order_Priority] AS [Order_Priority], 
+    [superstore].[Product_ID] AS [Product_ID], 
+    [superstore].[Product_Name] AS [Product_Name], 
+    [superstore].[Profit] AS [Profit], 
+    [superstore].[Quantity] AS [Quantity], 
+    [superstore].[Region] AS [Region], 
+    [superstore].[Row_ID] AS [Row_ID], 
+    [superstore].[Sales] AS [Sales], 
+    [superstore].[Segment] AS [Segment], 
+    [superstore].[Ship_Date] AS [Ship_Date], 
+    [superstore].[Ship_Mode] AS [Ship_Mode], 
+    [superstore].[Shipping_Cost] AS [Shipping_Cost], 
+    [superstore].[State] AS [State], 
+    [superstore].[Sub_Category] AS [Sub_Category], 
+    [superstore].[Year] AS [Year], 
+    [superstore].[Market2] AS [Market2], 
+    [superstore].[weeknum] AS [weeknum]
+    FROM [dbo].[superstore] AS [superstore]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Db17_SuperStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="superstore">
+          <Key>
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Country" />
+            <PropertyRef Name="Customer_ID" />
+            <PropertyRef Name="Customer_Name" />
+            <PropertyRef Name="Market" />
+            <PropertyRef Name="记录数" />
+            <PropertyRef Name="Order_Date" />
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Order_Priority" />
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Product_Name" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="Row_ID" />
+            <PropertyRef Name="Sales" />
+            <PropertyRef Name="Segment" />
+            <PropertyRef Name="Ship_Date" />
+            <PropertyRef Name="Ship_Mode" />
+            <PropertyRef Name="Shipping_Cost" />
+            <PropertyRef Name="State" />
+            <PropertyRef Name="Sub_Category" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Market2" />
+            <PropertyRef Name="weeknum" />
+          </Key>
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Discount" Type="Byte" />
+          <Property Name="Market" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="记录数" Type="Byte" Nullable="false" />
+          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Order_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Order_Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Product_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Product_Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Profit" Type="Double" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Row_ID" Type="Int32" Nullable="false" />
+          <Property Name="Sales" Type="Int16" Nullable="false" />
+          <Property Name="Segment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ship_Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Ship_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Shipping_Cost" Type="Double" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sub_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int16" Nullable="false" />
+          <Property Name="Market2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="weeknum" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Db17_SuperStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="superstore" EntityType="Self.superstore" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Db17_SuperStoreModelStoreContainer" CdmEntityContainer="Db17_SuperStoreEntities">
+          <EntitySetMapping Name="superstore">
+            <EntityTypeMapping TypeName="Db17_SuperStoreModel.superstore">
+              <MappingFragment StoreEntitySet="superstore">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Market" ColumnName="Market" />
+                <ScalarProperty Name="记录数" ColumnName="记录数" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Order_Priority" ColumnName="Order_Priority" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Row_ID" ColumnName="Row_ID" />
+                <ScalarProperty Name="Sales" ColumnName="Sales" />
+                <ScalarProperty Name="Segment" ColumnName="Segment" />
+                <ScalarProperty Name="Ship_Date" ColumnName="Ship_Date" />
+                <ScalarProperty Name="Ship_Mode" ColumnName="Ship_Mode" />
+                <ScalarProperty Name="Shipping_Cost" ColumnName="Shipping_Cost" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Sub_Category" ColumnName="Sub_Category" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Market2" ColumnName="Market2" />
+                <ScalarProperty Name="weeknum" ColumnName="weeknum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

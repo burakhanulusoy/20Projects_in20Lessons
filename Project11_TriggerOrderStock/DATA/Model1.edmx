@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_11_project_sqlTriggerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_cashRegister">
+          <Key>
+            <PropertyRef Name="cashregisterid" />
+          </Key>
+          <Property Name="cashregisterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="balance" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer" Type="varchar" MaxLength="50" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="unitprice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="totalprice" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_process">
+          <Key>
+            <PropertyRef Name="processid" />
+          </Key>
+          <Property Name="processid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="process" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_product">
+          <Key>
+            <PropertyRef Name="Productid" />
+          </Key>
+          <Property Name="Productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="stock" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tbl_order_tbl_product">
+          <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="0..1" />
+          <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="tbl_order">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_11_project_sqlTriggerModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_cashRegister" EntityType="Self.tbl_cashRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_order" EntityType="Self.tbl_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_process" EntityType="Self.tbl_process" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_product" EntityType="Self.tbl_product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_order_tbl_product" Association="Self.FK_tbl_order_tbl_product">
+            <End Role="tbl_product" EntitySet="tbl_product" />
+            <End Role="tbl_order" EntitySet="tbl_order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_11_project_sqlTriggerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_cashRegister">
+          <Key>
+            <PropertyRef Name="cashregisterid" />
+          </Key>
+          <Property Name="cashregisterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="balance" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="unitprice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="totalprice" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="tbl_product" Relationship="DB_11_project_sqlTriggerModel.FK_tbl_order_tbl_product" FromRole="tbl_order" ToRole="tbl_product" />
+        </EntityType>
+        <EntityType Name="tbl_product">
+          <Key>
+            <PropertyRef Name="Productid" />
+          </Key>
+          <Property Name="Productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tbl_order" Relationship="DB_11_project_sqlTriggerModel.FK_tbl_order_tbl_product" FromRole="tbl_product" ToRole="tbl_order" />
+        </EntityType>
+        <EntityContainer Name="DB_11_project_sqlTriggerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tbl_cashRegister" EntityType="Self.tbl_cashRegister" />
+          <EntitySet Name="tbl_order" EntityType="Self.tbl_order" />
+          <EntitySet Name="tbl_product" EntityType="Self.tbl_product" />
+          <EntitySet Name="tbl_process" EntityType="DB_11_project_sqlTriggerModel.tbl_process" />
+          <AssociationSet Name="FK_tbl_order_tbl_product" Association="DB_11_project_sqlTriggerModel.FK_tbl_order_tbl_product">
+            <End Role="tbl_product" EntitySet="tbl_product" />
+            <End Role="tbl_order" EntitySet="tbl_order" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_process">
+          <Key>
+            <PropertyRef Name="processid" />
+          </Key>
+          <Property Name="processid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="process" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_tbl_order_tbl_product">
+          <End Type="DB_11_project_sqlTriggerModel.tbl_product" Role="tbl_product" Multiplicity="0..1" />
+          <End Type="DB_11_project_sqlTriggerModel.tbl_order" Role="tbl_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_product">
+              <PropertyRef Name="Productid" />
+            </Principal>
+            <Dependent Role="tbl_order">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_11_project_sqlTriggerModelStoreContainer" CdmEntityContainer="DB_11_project_sqlTriggerEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_11_project_sqlTriggerModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_cashRegister">
+            <EntityTypeMapping TypeName="DB_11_project_sqlTriggerModel.tbl_cashRegister">
+              <MappingFragment StoreEntitySet="tbl_cashRegister">
+                <ScalarProperty Name="cashregisterid" ColumnName="cashregisterid" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_order">
+            <EntityTypeMapping TypeName="DB_11_project_sqlTriggerModel.tbl_order">
+              <MappingFragment StoreEntitySet="tbl_order">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="customer" ColumnName="customer" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_product">
+            <EntityTypeMapping TypeName="DB_11_project_sqlTriggerModel.tbl_product">
+              <MappingFragment StoreEntitySet="tbl_product">
+                <ScalarProperty Name="Productid" ColumnName="Productid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_process">
+            <EntityTypeMapping TypeName="DB_11_project_sqlTriggerModel.tbl_process">
+              <MappingFragment StoreEntitySet="tbl_process">
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="processid" ColumnName="processid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
